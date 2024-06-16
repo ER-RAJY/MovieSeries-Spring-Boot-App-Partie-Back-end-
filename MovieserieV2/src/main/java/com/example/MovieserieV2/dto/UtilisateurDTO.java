@@ -8,4 +8,7 @@ public class UtilisateurDTO {
     private String email;
     private String nom;
     private String password;
+
+    public UtilisateurDTO(int idUtilisateur, String email, String nom, String password) {
+    }
 }

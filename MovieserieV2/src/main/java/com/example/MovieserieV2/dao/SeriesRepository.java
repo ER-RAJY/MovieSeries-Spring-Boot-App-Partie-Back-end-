@@ -1,6 +1,8 @@
 package com.example.MovieserieV2.dao;
 
-import com.movieseries.movieseries.model.Series;
+
+
+import com.example.MovieserieV2.model.Series;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

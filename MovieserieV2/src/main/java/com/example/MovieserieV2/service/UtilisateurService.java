@@ -1,7 +1,8 @@
 package com.example.MovieserieV2.service;
 
-import com.movieseries.movieseries.dao.UtilisateurRepository;
-import com.movieseries.movieseries.model.Utilisateur;
+
+import com.example.MovieserieV2.dao.UtilisateurRepository;
+import com.example.MovieserieV2.model.Utilisateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
