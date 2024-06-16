@@ -1,4 +1,4 @@
-package com.example.MovieserieV2.sevice;
+package com.example.MovieserieV2;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
