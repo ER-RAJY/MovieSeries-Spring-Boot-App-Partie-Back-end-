@@ -1,7 +1,11 @@
 package com.example.MovieserieV2.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class UtilisateurDTO {
     private int id_Utilisateur;
@@ -9,6 +13,4 @@ public class UtilisateurDTO {
     private String nom;
     private String password;
 
-    public UtilisateurDTO(int idUtilisateur, String email, String nom, String password) {
-    }
 }

@@ -6,8 +6,6 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
-@Getter
 @Entity
 @Table(name = "movies")
 public class Movie {
@@ -23,4 +21,7 @@ public class Movie {
     private String acteurs;
     private Double note;
     private String cover;
+
+
+
 }

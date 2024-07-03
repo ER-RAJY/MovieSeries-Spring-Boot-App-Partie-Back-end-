@@ -16,10 +16,11 @@ public class Favorite {
     private Long id_Favoris;
 
     @ManyToOne
-    @JoinColumn(name = "id_Movie")
+    @JoinColumn(name = "id_Movie", referencedColumnName = "id_Movie")
     private Movie movie;
 
     @ManyToOne
-    @JoinColumn(name = "id_Series")
+    @JoinColumn(name = "id_Series", referencedColumnName = "id_Series")
     private Series series;
+
 }

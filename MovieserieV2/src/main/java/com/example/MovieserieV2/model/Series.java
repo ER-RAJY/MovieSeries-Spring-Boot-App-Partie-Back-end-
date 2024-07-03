@@ -23,4 +23,5 @@ public class Series {
     private String createur;
     private String acteurs;
     private Double note;
+    private String imgLien; // Added field for image link
 }

@@ -1,11 +1,10 @@
-// File: src/main/java/com/example/MovieserieV2/controller/UtilisateurController.java
-
 package com.example.MovieserieV2.controller;
 
 import com.example.MovieserieV2.dto.UtilisateurDTO;
 import com.example.MovieserieV2.model.Utilisateur;
 import com.example.MovieserieV2.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +28,7 @@ public class UtilisateurController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UtilisateurDTO> getUserById(@PathVariable int id) {
+    public ResponseEntity<UtilisateurDTO> getUserById(@PathVariable long id) {
         Optional<Utilisateur> user = utilisateurService.getUserById(id);
         return user.map(u -> ResponseEntity.ok(new UtilisateurDTO(u.getId_Utilisateur(), u.getEmail(), u.getNom(), u.getPassword())))
                 .orElse(ResponseEntity.notFound().build());
@@ -42,9 +41,25 @@ public class UtilisateurController {
         return ResponseEntity.ok(new UtilisateurDTO(savedUser.getId_Utilisateur(), savedUser.getEmail(), savedUser.getNom(), savedUser.getPassword()));
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable int id) {
-        utilisateurService.deleteUserById(id);
-        return ResponseEntity.noContent().build();
+    @PutMapping("/{id}")
+    public ResponseEntity<UtilisateurDTO> updateUser(@PathVariable long id, @RequestBody UtilisateurDTO utilisateurDTO) {
+        Utilisateur updatedUser = new Utilisateur(utilisateurDTO.getId_Utilisateur(), utilisateurDTO.getEmail(), utilisateurDTO.getNom(), utilisateurDTO.getPassword());
+        Optional<Utilisateur> updatedOptionalUser = utilisateurService.updateUser(id, updatedUser);
+        return updatedOptionalUser.map(user -> ResponseEntity.ok(new UtilisateurDTO(user.getId_Utilisateur(), user.getEmail(), user.getNom(), user.getPassword())))
+                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).body(null));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable long id) {
+        if (utilisateurService.getUserById(id).isPresent()) {
+            utilisateurService.deleteUserById(id);
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+    @GetMapping("/test/{email}/{password}")
+    public  List<Utilisateur> findAllByPasswordAndEmail(@PathVariable String email, @PathVariable String password){
+        return utilisateurService.findAllByPasswordAndEmail(email, password);
     }
 }
